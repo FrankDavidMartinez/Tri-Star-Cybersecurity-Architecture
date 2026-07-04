@@ -1,0 +1,46 @@
+<#
+.SYNOPSIS
+    Asset discovery script for MISD Transportation Department.
+    
+.DESCRIPTION
+    Collects system metadata and exports it to a central network share.
+    Designed for Intune deployment with structured error handling.
+#>
+
+$ExportPath = "\\MISD-FileServer\Transportation-Inventory\"
+$DateStamp = Get-Date -Format "yyyyMMdd"
+$Filename = "$($env:COMPUTERNAME)-Inventory-$DateStamp.csv"
+$FullPath = Join-Path -Path $ExportPath -ChildPath $Filename
+
+try {
+    # Ensure the export path is accessible
+    if (!(Test-Path -Path $ExportPath)) {
+        throw "Network share $ExportPath is unreachable."
+    }
+
+    # Collect Asset Data
+    $AssetData = [PSCustomObject]@{
+        TimeStamp   = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
+        Hostname    = $env:COMPUTERNAME
+        User        = $env:USERNAME
+        OSVersion   = (Get-CimInstance Win32_OperatingSystem -ErrorAction Stop).Caption
+        Manufacturer= (Get-CimInstance Win32_ComputerSystem -ErrorAction Stop).Manufacturer
+        Model       = (Get-CimInstance Win32_ComputerSystem -ErrorAction Stop).Model
+        MACAddress  = (Get-NetAdapter | Where-Object Status -eq 'Up' | Select-Object -First 1).MacAddress
+    }
+
+    # Export to CSV
+    $AssetData | Export-Csv -Path $FullPath -NoTypeInformation -Append
+    
+    Write-Output "Successfully exported inventory for $env:COMPUTERNAME to $FullPath"
+    
+    # Exit Code 0: Success
+    exit 0 
+}
+catch {
+    # Log the specific error to STDOUT for Intune console visibility
+    Write-Error "Inventory collection failed for $env:COMPUTERNAME. Error: $($_.Exception.Message)"
+    
+    # Exit Code 1: Failure (Intune will mark this as 'Failed')
+    exit 1
+}
