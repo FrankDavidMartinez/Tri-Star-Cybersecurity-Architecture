@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tri-Star Plan</title>
+    <title>Tri-Star Plan | Enterprise Zero Trust Cybersecurity Roadmap</title>
     <style>
         :root {
             --bg-color: #0d1117;
@@ -11,8 +11,12 @@
             --border-color: #30363d;
             --text-main: #c9d1d9;
             --text-muted: #8b949e;
-            --accent-gold: #f1e05a;
+            --text-heading: #ffffff;
+            --accent-gold: #d29922;
             --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #bc8cff;
+            --code-bg: #161b22;
         }
 
         * {
@@ -26,119 +30,153 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 3rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1.5rem;
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         h1 {
             font-size: 2.5rem;
-            color: #ffffff;
+            color: var(--text-heading);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .disclosure-banner {
+            background-color: rgba(88, 166, 255, 0.1);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .disclosure-banner a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .disclosure-banner a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: var(--text-heading);
+            margin: 2.5rem 0 1.25rem 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+            margin: 1.75rem 0 0.75rem 0;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
             margin-bottom: 0.5rem;
         }
 
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        li strong {
+            color: var(--text-heading);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin: 2rem 0;
         }
 
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 1.5rem;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            position: relative;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-blue);
-        }
+        .card.star-1 { border-top: 4px solid var(--accent-gold); }
+        .card.star-2 { border-top: 4px solid var(--accent-blue); }
+        .card.star-3 { border-top: 4px solid var(--accent-green); }
 
-        .star-icon {
-            color: var(--accent-gold);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card h2 {
-            font-size: 1.25rem;
-            color: #ffffff;
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 0.75rem;
         }
 
-        .card p {
-            color: var(--text-muted);
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--text-heading);
+            font-weight: 600;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            background-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
             font-size: 0.95rem;
         }
 
-        footer {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1.5rem;
+        th, td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        footer a {
-            color: var(--accent-blue);
-            text-decoration: none;
+        th {
+            background-color: var(--card-bg);
+            color: var(--text-heading);
+            font-weight: 600;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        tr:last-child td {
+            border-bottom: none;
         }
-    </style>
-</head>
-<body>
 
-    <div class="container">
-        <header>
-            <h1>Tri-Star Plan</h1>
-            <p class="subtitle">A three-pillar strategy for project execution and growth</p>
-        </header>
-
-        <main class="grid">
-            <div class="card">
-                <div class="star-icon">★</div>
-                <h2>Pillar 1: Discovery</h2>
-                <p>Analyze requirements, establish core scope, and map out initial technical specifications for maximum alignment.</p>
-            </div>
-
-            <div class="card">
-                <div class="star-icon">★</div>
-                <h2>Pillar 2: Execution</h2>
-                <p>Iterative development focused on clean code, automated testing, and rapid deployment cycles.</p>
-            </div>
-
-            <div class="card">
-                <div class="star-icon">★</div>
-                <h2>Pillar 3: Optimization</h2>
-                <p>Monitor performance, collect user feedback, and refine the ecosystem for long-term scalability.</p>
-            </div>
-        </main>
-
-        <footer>
-            <p>Hosted on <a href="https://pages.github.com/">GitHub Pages</a> • Powered by the Tri-Star Framework</p>
-        </footer>
-    </div>
-
-</body>
-</html>
+        tr:nth-child(even) {
+            background-color:
