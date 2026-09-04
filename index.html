@@ -1,1 +1,238 @@
 
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri-Star Plan | Zero Trust Architecture Defense Matrix</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --border-color: #1f2937;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --accent-red: #f87171;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 0.75rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #1f2937;
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag-fail {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .tag-pass {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .incident-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .incident-card h3 {
+            margin-top: 0;
+            color: var(--accent-blue);
+        }
+
+        .flow-diagram {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: monospace;
+            color: var(--accent-green);
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Tri-Star Plan Defense Matrix</h1>
+        <p class="subtitle">An Identity-Centric Zero Trust Governance Model vs. Legacy Enterprise Perimeter Vendors and Critical Infrastructure Cyber Incidents</p>
+    </header>
+
+    <div class="section-title">1. Structural Architectural Comparison</div>
+    <p>How the <strong>Tri-Star Governance Architecture</strong> (Cloudflare Zero Trust, CrowdStrike Falcon, Aruba ClearPass, YubiKey FIDO2) systematically outperforms traditional perimeter appliance vendors.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Vector / Capability</th>
+                <th>Legacy Vendor Gateway (Cisco / Palo Alto)</th>
+                <th>Tri-Star Plan Defense Model</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Perimeter Attack Surface</strong></td>
+                <td><span class="tag-fail">EXPOSED</span> Listening ports (VPN/Portal) exposed to public internet; vulnerable to zero-days & scan sweeps.</td>
+                <td><span class="tag-pass">INVISIBLE</span> Outbound-only tunnels (Cloudflare Tunnel). No inbound listening ports on public IPs.</td>
+            </tr>
+            <tr>
+                <td><strong>Authentication Security</strong></td>
+                <td><span class="tag-fail">WEAK / BYPASSABLE</span> Push-MFA, SMS, or software tokens prone to AiTM phishing & push-fatigue.</td>
+                <td><span class="tag-pass">PHISHING-RESISTANT</span> Hardware-bound FIDO2/WebAuthn (YubiKey). Cryptographic domain origin locking.</td>
+            </tr>
+            <tr>
+                <td><strong>Lateral Movement Control</strong></td>
+                <td><span class="tag-fail">FLAT NETWORK</span> VPN grants wide Layer-3 subnet visibility once authenticated.</td>
+                <td><span class="tag-pass">MICRO-SEGMENTED</span> Aruba ClearPass dynamic RBAC enforcement down to switch/port layer. Zero cross-VLAN leaks.</td>
+            </tr>
+            <tr>
+                <td><strong>Post-Exploitation / LotL</strong></td>
+                <td><span class="tag-fail">BLIND SPOTS</span> Rely on static signatures; vulnerable to script abuse (PowerShell/WMI).</td>
+                <td><span class="tag-pass">BEHAVIORAL EDR</span> CrowdStrike Falcon real-time AI heuristics, process isolation, and execution blocking.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-title">2. Critical Infrastructure Case Studies</div>
+
+    <div class="incident-card">
+        <h3>Colonial Pipeline Incident (DarkSide Ransomware)</h3>
+        <p><strong>Root Cause:</strong> Compromised single legacy VPN account lacking MFA, enabling lateral movement from IT networks to operational/billing assets, causing a 6-day shutdown.</p>
+        <p><strong>Tri-Star Neutralization:</strong></p>
+        <ul>
+            <li><strong>Hardware MFA Lock:</strong> Even with stolen VPN credentials, access is blocked without the physical <strong>YubiKey</strong> FIDO2 token.</li>
+            <li><strong>Zero Trust Network Access (ZTNA):</strong> Eliminates legacy remote access VPN concentrators completely.</li>
+            <li><strong>Lateral Containment:</strong> <strong>Aruba Dynamic Micro-segmentation</strong> prevents IT network traffic from probing billing or SCADA boundaries.</li>
+        </ul>
+    </div>
+
+    <div class="incident-card">
+        <h3>Longhorn Pipeline & Energy Infrastructure Threat Profiles</h3>
+        <p><strong>Root Cause:</strong> Legacy OT/ICS environments connected to corporate IT networks with perimeter firewalls subject to remote code execution (RCE) zero-days and living-off-the-land (LotL) lateral escalation.</p>
+        <p><strong>Tri-Star Neutralization:</strong></p>
+        <ul>
+            <li><strong>CrowdStrike Falcon Behavioral Inspection:</strong> Intercepts unauthorized process spawning, memory injection, and native tool weaponization in real time.</li>
+            <li><strong>Cloudflare Anycast Shielding:</strong> Prevents targeted DDoS or direct exploitation attempts against perimeter control nodes.</li>
+        </ul>
+    </div>
+
+    <div class="section-title">3. Identity-Bound Defense Flow</div>
+    <p>The sequential access validation chain enforced across every session request under the Tri-Star Plan:</p>
+
+    <div class="flow-diagram">
+[ Internet User / Unauthenticated Device ]
+                   │
+                   ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 1. Cloudflare Zero Trust (Outbound Tunnels)                │
+│    • Invisible perimeter; blocks direct port scans          │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ Requires Cryptographic Proof
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 2. YubiKey Hardware Authentication (FIDO2 / WebAuthn)       │
+│    • Eliminates push-phishing, token theft, and credential  │
+│      reuse vulnerabilities                                  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ Evaluates Device Health & Role
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 3. Continuous Endpoint & Network Governance                 │
+│    • CrowdStrike Falcon: Continuous EDR posture checks       │
+│    • Aruba ClearPass: Dynamic micro-segmentation            │
+└─────────────────────────────────────────────────────────────┘
+    </div>
+
+    <footer>
+        <p>Tri-Star Plan Cybersecurity Governance Architecture &copy; 2026. Built for GitHub Pages.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
